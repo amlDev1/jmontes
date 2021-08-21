@@ -35,7 +35,8 @@ export class CallLogService {
     }
     let d = new Date();
     if (typeof date === 'string') {
-      d = new Date(date);
+      const stringDate = new Date(date);
+      d = new Date(stringDate.toDateString());
     } else {
       d = new Date(date.toDateString());
     }
