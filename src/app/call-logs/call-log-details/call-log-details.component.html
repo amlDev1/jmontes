@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <form [formGroup]="callLogForm"
+        (ngSubmit)="save(callLogForm)"
+        novalidate
+        autocomplete="off"
+        class="row">
+    <div class="col">
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Caller</mat-label>
+            <select matNativeControl
+                    formControlName="caller">
+              <option *ngFor="let caller of users"
+                      [value]="caller.name">
+                {{ caller.name }}
+              </option>
+            </select>
+            <mat-error *ngIf="caller?.invalid ">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Status</mat-label>
+            <select matNativeControl
+                    formControlName="status">
+              <option *ngFor="let status of statuses"
+                      [value]="status.name">
+                {{ status.name }}
+              </option>
+            </select>
+            <mat-error *ngIf="status?.invalid ">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="" />
+            <mat-error *ngIf="title?.invalid ">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Problem</mat-label>
+            <textarea matInput formControlName="problem"
+                      rows="4"
+                      placeholder="Enter problem Description">
+            </textarea>
+            <mat-error *ngIf="problem?.invalid ">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="row mt-2">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Solution</mat-label>
+            <textarea matInput formControlName="solution"
+                      rows="4"
+                      placeholder="Enter a solution description">
+            </textarea>
+            <mat-error *ngIf="solution?.invalid ">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="button-row">
+            <button type="submit" mat-raised-button [disabled]="callLogForm.invalid" color="primary">Save</button>
+            <button type="button" mat-raised-button
+                    [disabled]="callLogForm.invalid"
+                    (click)="saveAndClose()">Save and Close</button>
+            <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
